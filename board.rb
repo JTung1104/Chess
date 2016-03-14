@@ -3,6 +3,12 @@ require_relative 'pieces'
 class Board
   def initialize
     @grid = Array.new(8) { Array.new(8) }
+    populate
+  end
+
+  def move(start_pos, end_pos)
+    raise 'no piece at start position' if empty?(start_pos)
+    raise 'invalid end position' unless valid_pos?(end_pos)
   end
 
   def move_piece!(start_pos, end_pos)
