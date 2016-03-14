@@ -3,8 +3,8 @@ module Stepable
     moves = []
 
     move_diffs.each do |dx, dy|
-      cur_x, cur_y = pos
-      pos = [cur_x + dx, cur_y + dy]
+      x, y = pos
+      pos = [x + dx, y + dy]
 
       next unless board.valid_pos?(pos)
 
