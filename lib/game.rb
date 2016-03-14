@@ -27,7 +27,7 @@ class Game
     end
 
     display.render
-    puts "#{current_player} is checkmated."
+    puts "#{current_player.capitalize} is checkmated."
   end
 
   private

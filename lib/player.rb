@@ -15,11 +15,15 @@ class Player
       display.render
 
       if start_pos
-        puts "#{color}'s turn. Move where?"
+        puts "#{color.capitalize}'s turn. Move to where?"
         end_pos = display.get_input
+
+        display.reset! if end_pos
       else
-        puts "#{color}'s turn. Pick a piece."
+        puts "#{color.capitalize}'s turn. Pick a piece to move."
         start_pos = display.get_input
+
+        display.reset! if start_pos
       end
     end
 

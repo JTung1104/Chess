@@ -8,7 +8,7 @@ class Board
   end
 
   def move_piece(turn_color, start_pos, end_pos)
-    raise 'no piece at start position' if empty?(start_pos)
+    raise 'No piece at start position' if empty?(start_pos)
     piece = self[start_pos]
 
     if piece.color != turn_color
@@ -88,7 +88,7 @@ class Board
 
   def checkmate?(color)
     return false unless in_check?(color)
-    pieces.all? { |p| p.color == color && p.valid_moves.empty? }
+    pieces.select { |p| p.color == color}.all? { |p| p.valid_moves.empty? }
   end
 
   def in_check?(color)

@@ -5,6 +5,8 @@ require_relative 'board.rb'
 class Display
   include Cursorable
 
+  attr_reader :messages
+
   def initialize(board)
     @board = board
     @cursor_pos = [0, 0]
@@ -34,16 +36,16 @@ class Display
       puts "#{val}"
     end
   end
-end
 
-def reset!
-  @messages.delete(:error)
-end
+  def reset!
+    @messages.delete(:error)
+  end
 
-def uncheck!
-  @messages.delete(:check)
-end
+  def uncheck!
+    @messages.delete(:check)
+  end
 
-def set_check!
-  @messages[:check] = "Check!"
+  def set_check!
+    @messages[:check] = "Check!"
+  end
 end
