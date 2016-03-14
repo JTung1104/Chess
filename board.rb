@@ -1,9 +1,9 @@
 require_relative 'pieces'
 
 class Board
-  def initialize
+  def initialize(fill_board = true)
     @grid = Array.new(8) { Array.new(8) }
-    populate
+    populate if fill_board
   end
 
   def move(start_pos, end_pos)
@@ -37,7 +37,7 @@ class Board
   end
 
   def populate
-    
+
   end
 
   def empty?(pos)
@@ -46,5 +46,19 @@ class Board
 
   def valid_pos?(pos)
     pos.all? { |coord| (0..7).cover?(coord) }
+  end
+
+  def dup
+    new_board = Board.new(false)
+
+    pieces.each do |piece|
+      piece.class.new(piece.color, new_board, piece.pos)
+    end
+
+    new_board
+  end
+
+  def pieces
+    @grid.flatten.reject { |piece| piece.empty? }
   end
 end

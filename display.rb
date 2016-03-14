@@ -13,24 +13,24 @@ class Display
   def render
     system("clear")
 
-    row, col = 0, 0
+    i, j = 0, 0
     bg_color = ""
 
     puts "  A B C D E F G H"
-    while row < 8
-      print "#{row} "
-      while col < 8
-        bg_color = (col.even? ? :black : :blue) if row.even?
-        bg_color = (col.odd? ?  :black : :blue) if row.odd?
-        bg_color = :yellow if [row, col] == @cursor_pos
+    while i < 8
+      print "#{i} "
+      while j < 8
+        bg_color = (j.even? ? :black : :blue) if i.even?
+        bg_color = (j.odd? ?  :black : :blue) if i.odd?
+        bg_color = :yellow if [i, j] == @cursor_pos
 
-        print "#{@board[row,col]} ".colorize(:background => bg_color)
-        col += 1
+        print "#{@board[i, j]} ".colorize(:background => bg_color)
+        j += 1
       end
 
       puts
-      col = 0
-      row += 1
+      j = 0
+      i += 1
     end
   end
 end
