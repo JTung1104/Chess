@@ -7,4 +7,10 @@ class Queen < Piece
   def symbol
     '♛'.colorize(color)
   end
+
+  protected
+
+  def move_dirs
+    standard_dirs + diagonal_dirs
+  end
 end

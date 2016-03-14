@@ -7,4 +7,8 @@ class Player
     @color = color
     @display = display
   end
+
+  def make_move(start_pos, end_pos)
+
+  end
 end

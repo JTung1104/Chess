@@ -37,7 +37,9 @@ class Board
   end
 
   def populate
+    back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
+    
   end
 
   def empty?(pos)
@@ -60,5 +62,8 @@ class Board
 
   def pieces
     @grid.flatten.reject { |piece| piece.empty? }
+  end
+
+  def checkmate?
   end
 end
