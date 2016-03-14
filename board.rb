@@ -17,14 +17,28 @@ class Board
     @grid[i][j]
   end
 
+  def []=(pos, piece)
+    raise 'invalid pos' unless valid_pos?(pos)
+
+    i, j = pos
+    @grid[i][j] = piece
+  end
+
+  def add_piece(piece, pos)
+    raise 'position not empty' unless empty?(pos)
+
+    self[pos] = piece
+  end
+
   def populate
-    @grid.each_with_index do |row, i|
-      row.each_with_index do |col, j|
-      end
-    end
+    
+  end
+
+  def empty?(pos)
+    self[pos].empty?
   end
 
   def valid_pos?(pos)
-    (0...8).cover?(pos[0]) && (0...8).cover?(pos[1])
+    pos.all? { |coord| (0..7).cover?(coord) }
   end
 end

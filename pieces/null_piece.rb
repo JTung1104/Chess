@@ -1,5 +1,4 @@
 class NullPiece
-
   def moves
     []
   end
@@ -7,7 +6,7 @@ class NullPiece
   def color
     :none
   end
-  
+
   def empty?
     true
   end
