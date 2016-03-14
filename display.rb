@@ -12,14 +12,14 @@ class Display
 
   def render
     system("clear")
-
+    puts "Arrow keys, or WASD to move, space or enter to confirm."
     i, j = 0, 0
     bg_color = ""
 
     while i < 8
       while j < 8
-        bg_color = (i + j).even? ? :black : :blue
-        bg_color = :yellow if [i, j] == @cursor_pos
+        bg_color = (i + j).even? ? :light_green : :light_blue
+        bg_color = :magenta if [i, j] == @cursor_pos
         print "#{@board[[i, j]]} ".colorize(:background => bg_color)
 
         j += 1

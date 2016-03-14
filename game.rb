@@ -15,10 +15,9 @@ class Game
   end
 
   def play
-    while true
+    until board.checkmate?(current_player)
       start_pos, end_pos = players[current_player].make_move(@board)
-      board.move_piece(start_pos, end_pos)
-
+      board.move_piece(current_player, start_pos, end_pos)
       swap_turn!
     end
   end

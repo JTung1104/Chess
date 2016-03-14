@@ -7,16 +7,27 @@ class Board
     populate if fill_board
   end
 
-  def move_piece(start_pos, end_pos)
+  def move_piece(turn_color, start_pos, end_pos)
     raise 'no piece at start position' if empty?(start_pos)
+    piece = self[start_pos]
 
-    self[end_pos] = self[start_pos]
-    self[start_pos] = NullPiece.new
+    if piece.color != turn_color
+      raise "Move your own piece"
+    elsif !piece.moves.include?(end_pos)
+      raise "Can't move there"
+    elsif !piece.valid_moves.include?(end_pos)
+      raise "You cannot move into check"
+    end
+
+    move_piece!(start_pos, end_pos)
   end
 
   def move_piece!(start_pos, end_pos)
-    self[end_pos] = self[start_pos]
+    piece = self[start_pos]
+
+    self[end_pos] = piece
     self[start_pos] = NullPiece.new
+    piece.pos = end_pos
   end
 
   def [](pos)
@@ -51,7 +62,6 @@ class Board
       Pawn.new(:white, self, [1, j])
       Pawn.new(:black, self, [6, j])
     end
-
   end
 
   def empty?(pos)
@@ -76,6 +86,13 @@ class Board
     @grid.flatten.reject { |piece| piece.empty? }
   end
 
-  def checkmate?
+  def checkmate?(color)
+    return false unless in_check?(color)
+    pieces.all? { |p| p.color == color && p.valid_moves.empty? }
+  end
+
+  def in_check?(color)
+    king_pos = pieces.select { |p| p.color == color && p.class == King }.first.pos
+    pieces.any? { |p| p.color != color && p.moves.include?(king_pos) }
   end
 end
