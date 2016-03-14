@@ -8,6 +8,7 @@ class Display
   def initialize(board)
     @board = board
     @cursor_pos = [0, 0]
+    @messages = {}
   end
 
   def render
@@ -28,5 +29,21 @@ class Display
       j = 0
       i += 1
     end
+
+    @messages.each do |key, val|
+      puts "#{val}"
+    end
   end
+end
+
+def reset!
+  @messages.delete(:error)
+end
+
+def uncheck!
+  @messages.delete(:check)
+end
+
+def set_check!
+  @messages[:check] = "Check!"
 end

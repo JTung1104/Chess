@@ -8,7 +8,7 @@ class Player
     @display = display
   end
 
-  def make_move(board)
+  def make_move
     start_pos, end_pos = nil, nil
 
     until start_pos && end_pos
