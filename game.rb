@@ -16,7 +16,10 @@ class Game
 
   def play
     while true
-      
+      start_pos, end_pos = players[current_player].make_move(@board)
+      board.move_piece(start_pos, end_pos)
+
+      swap_turn!
     end
   end
 

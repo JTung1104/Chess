@@ -1,11 +1,4 @@
-require_relative 'piece'
-
-class NullPiece < Piece
-  def initialize(color, board, pos)
-    @board = board
-    @pos = pos
-  end
-
+class NullPiece
   def moves
     []
   end

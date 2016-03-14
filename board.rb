@@ -1,14 +1,14 @@
 require_relative 'pieces'
+require 'byebug'
 
 class Board
   def initialize(fill_board = true)
-    @grid = Array.new(8) { Array.new(8) }
+    @grid = Array.new(8) { Array.new(8, NullPiece.new) }
     populate if fill_board
   end
 
-  def move(start_pos, end_pos)
+  def move_piece(start_pos, end_pos)
     raise 'no piece at start position' if empty?(start_pos)
-    raise 'invalid end position' unless valid_pos?(end_pos)
 
     self[end_pos] = self[start_pos]
     self[start_pos] = NullPiece.new
@@ -40,12 +40,6 @@ class Board
   end
 
   def populate
-    @grid.each_with_index do |row, i|
-      row.each_with_index do |col, j|
-        self[i, j] = NullPiece.new
-      end
-    end
-
     back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
     back_row.each_with_index do |piece, i|
@@ -79,7 +73,7 @@ class Board
   end
 
   def pieces
-    @grid.flatten
+    @grid.flatten.reject { |piece| piece.empty? }
   end
 
   def checkmate?
