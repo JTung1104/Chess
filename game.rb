@@ -13,4 +13,20 @@ class Game
     }
     @current_player = :white
   end
+
+  def play
+    while true
+      
+    end
+  end
+
+  private
+
+  def swap_turn!
+    @current_player = (current_player == :white) ? :black : :white
+  end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  Game.new.play
 end

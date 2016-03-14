@@ -8,7 +8,6 @@ class Player
     @display = display
   end
 
-  def make_move(start_pos, end_pos)
-
+  def make_move
   end
 end

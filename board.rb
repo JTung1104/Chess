@@ -9,11 +9,14 @@ class Board
   def move(start_pos, end_pos)
     raise 'no piece at start position' if empty?(start_pos)
     raise 'invalid end position' unless valid_pos?(end_pos)
+
+    self[end_pos] = self[start_pos]
+    self[start_pos] = NullPiece.new
   end
 
   def move_piece!(start_pos, end_pos)
     self[end_pos] = self[start_pos]
-    self[start_pos] = nil
+    self[start_pos] = NullPiece.new
   end
 
   def [](pos)
@@ -37,6 +40,12 @@ class Board
   end
 
   def populate
+    @grid.each_with_index do |row, i|
+      row.each_with_index do |col, j|
+        self[i, j] = NullPiece.new
+      end
+    end
+
     back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
     back_row.each_with_index do |piece, i|
@@ -48,6 +57,7 @@ class Board
       Pawn.new(:white, self, [1, j])
       Pawn.new(:black, self, [6, j])
     end
+
   end
 
   def empty?(pos)
@@ -69,7 +79,7 @@ class Board
   end
 
   def pieces
-    @grid.flatten.reject { |piece| piece.empty? }
+    @grid.flatten
   end
 
   def checkmate?

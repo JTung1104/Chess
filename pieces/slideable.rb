@@ -1,4 +1,4 @@
-module Slidable
+module Slideable
   STANDARD_DIRS = [
     [-1, 0],
     [0, -1],
