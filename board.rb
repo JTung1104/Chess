@@ -39,7 +39,15 @@ class Board
   def populate
     back_row = [Rook, Knight, Bishop, Queen, King, Bishop, Knight, Rook]
 
-    
+    back_row.each_with_index do |piece, i|
+      piece.new(:white, self, [0, i])
+      piece.new(:black, self, [7, i])
+    end
+
+    8.times do |j|
+      Pawn.new(:white, self, [1, j])
+      Pawn.new(:black, self, [6, j])
+    end
   end
 
   def empty?(pos)
