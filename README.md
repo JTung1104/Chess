@@ -4,6 +4,9 @@ Console Chess written in Ruby.
 
 You can learn how to install Ruby here: https://www.ruby-lang.org/en/documentation/installation/
 
+![alt tag](Chess_board.png)
+
+
 ##To play:
 
 1.  Install Ruby
